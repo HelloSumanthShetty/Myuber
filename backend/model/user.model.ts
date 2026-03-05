@@ -50,8 +50,6 @@ export interface IUserMethods {
 
 export interface UserModel extends Model<IUser, {}, IUserMethods> {
     hashPassword(password: string): Promise<string>;
-   comparePassword(password:string) :Boolean,
-   generateAuthToken(password:string): string
 }
 const jwtcode = process.env.JWT || ""
 userSchema.methods.generateAuthToken = function () {

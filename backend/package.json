@@ -1,10 +1,10 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch src --exec ts-node server.ts",
+    "dev": "concurrently \"npx tsc --watch\"  \"nodemon -q dist/server.js \"",
     "start": "node dist/server.js",
     "build": "tsc"
   },
@@ -13,6 +13,7 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.3",
     "morgan": "^1.10.1"
@@ -22,6 +23,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^25.3.3",
     "concurrently": "^9.2.1",
     "dotenv": "^17.3.1",
