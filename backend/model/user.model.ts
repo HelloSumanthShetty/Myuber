@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
     SocketId:{
         type:String
     }
-})
+},{timestamps:true})
 export interface IUserMethods {
     generateAuthToken(): string;
     comparePassword(password: string): Promise<boolean>;
@@ -53,7 +53,7 @@ export interface UserModel extends Model<IUser, {}, IUserMethods> {
 }
 const jwtcode = process.env.JWT || ""
 userSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({_id:this._id},jwtcode )
+  const token = jwt.sign({_id:this._id},jwtcode, {expiresIn: "24h"} )
   return token
 }
 userSchema.methods.comparePassword = async function (password: string) {

@@ -1,7 +1,10 @@
 import express from "express";
 import {body} from "express-validator"
+import { authMiddleware  } from "../middleware/auth.middleware";
+import {registerUser, loginUser, getProfile, logoutUser} from "../controllers/user.controller" 
+
 const route = express.Router()
-import {registerUser, loginUser} from "../controllers/user.controller" 
+
 route.post("/register", [
     body("email")
         .notEmpty().withMessage("Fill the email")
@@ -24,4 +27,6 @@ route.post("/login", [
         .notEmpty().withMessage("Fill the password")
 ], loginUser);
 
+route.get("/profile",authMiddleware, getProfile);
+route.delete("/logout", logoutUser)
 export default route
